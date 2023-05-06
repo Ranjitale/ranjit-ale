@@ -57,7 +57,12 @@ require('dotenv').config()
 const cors=require('cors')
 
 // Set up session middleware
-app.use(cors())
+app.use(cors({origin: 'http://localhost:3000'}))
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // replace * with the domain name that you want to allow
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(session({
   secret: 'YOUR_SECRET_SESSION_KEY',
   resave: false,
