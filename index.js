@@ -54,9 +54,10 @@ const authRoutes = require('./routes/authRoutes');
 const indexRoutes = require('./routes/app');
 const app = express();
 require('dotenv').config()
-
+const cors=require('cors')
 
 // Set up session middleware
+app.use(cors())
 app.use(session({
   secret: 'YOUR_SECRET_SESSION_KEY',
   resave: false,
